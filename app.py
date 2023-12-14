@@ -2,12 +2,11 @@ import streamlit as st
 import pandas as pd
 import base64
 import joblib
-from sklearn.linear_model import LogisticRegression
 
-# Define function to perform prediction 
-def perform_prediction(df):
+# Define function to perform prediction
+def perform_prediction(df, model_path):
     # Load the trained model using joblib
-    model_case = joblib.load(open('Harsco_mpdel.pkl', 'rb'))
+    model_case = joblib.load(open(model_path, 'rb'))
     
     # Make predictions on the dataframe
     y_pred_case = model_case.predict(df)
@@ -25,6 +24,9 @@ st.header('CSV File Uploader')
 
 # Create file uploader component
 csv_file = st.file_uploader('Choose a CSV file', type='csv')
+
+# Define the path to your model file
+model_path = 'Harsco_model.pkl'
 
 # Check if a file was uploaded
 if csv_file is not None:
@@ -48,7 +50,7 @@ if csv_file is not None:
     )
 
     if st.button('Perform Prediction'):
-        result_df = perform_prediction(df)
+        result_df = perform_prediction(df, model_path)
         st.write(result_df)
         
         # Create a button to download the predicted dataframe as a CSV file
