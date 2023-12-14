@@ -38,7 +38,7 @@ if uploaded_file is not None:
                 continue  # Try the next encoding if decoding fails
 
         # Assuming 'Resubmit_binary' is your target variable
-        X = df.drop(columns=['Resubmit_binary'])
+        X = df.drop(columns=['Resubmit'])
 
         # Make predictions on the target variable
         y_pred = model.predict(X)
