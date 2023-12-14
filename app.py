@@ -6,7 +6,7 @@ from sklearn.linear_model import LogisticRegression
 
 # Define function to perform prediction
 def perform_prediction(df):
-    model_case = pickle.load(open('Harsco_mpdel.pkl', 'rb'))
+    model_case = pickle.load(open('Harsco_mpdel.pkl', 'rb')) 
     # Make predictions on the dataframe
     y_pred_case = model_case.predict(df)
     y_pred_case =pd.DataFrame(y_pred_case,columns=['predicted_values'])
