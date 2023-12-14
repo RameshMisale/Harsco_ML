@@ -9,7 +9,7 @@ import joblib
 model = joblib.load('Harsco_model.pkl')
 
 # Create a Streamlit web app
-st.title("Predicting the Resubmit/returned profiles")
+st.title("Classification Model Deployment")
 
 # Custom CSS to add a background image
 st.markdown(
@@ -28,36 +28,40 @@ st.markdown(
 uploaded_file = st.file_uploader("Upload a CSV file", type=["csv"])
 
 if uploaded_file is not None:
-    # Read the uploaded CSV file
-    df = pd.read_csv(uploaded_file)
+    try:
+        # Read the uploaded CSV file with specified encoding
+        df = pd.read_csv(uploaded_file, encoding='utf-8')
 
-    # Assuming 'Resubmit_binary' is your target variable
-    X = df.drop(columns=['Resubmit_binary'])
+        # Assuming 'Resubmit_binary' is your target variable
+        X = df.drop(columns=['Resubmit_binary'])
 
-    # Make predictions on the target variable
-    y_pred = model.predict(X)
+        # Make predictions on the target variable
+        y_pred = model.predict(X)
 
-    # Add predictions as a new column
-    df['Prediction'] = y_pred
+        # Add predictions as a new column
+        df['Prediction'] = y_pred
 
-    # Display the DataFrame with predictions
-    st.subheader("DataFrame with Predictions")
-    st.write(df)
+        # Display the DataFrame with predictions
+        st.subheader("DataFrame with Predictions")
+        st.write(df)
 
-    # Display model evaluation on the uploaded data
-    st.subheader("Model Evaluation on Uploaded Data")
+        # Display model evaluation on the uploaded data
+        st.subheader("Model Evaluation on Uploaded Data")
 
-    # Assuming 'Resubmit_binary' is your target variable
-    y_true = df['Resubmit_binary']
+        # Assuming 'Resubmit_binary' is your target variable
+        y_true = df['Resubmit_binary']
 
-    # Evaluate the model
-    accuracy = accuracy_score(y_true, y_pred)
-    classification_report_str = classification_report(y_true, y_pred)
-    confusion_mat = confusion_matrix(y_true, y_pred)
+        # Evaluate the model
+        accuracy = accuracy_score(y_true, y_pred)
+        classification_report_str = classification_report(y_true, y_pred)
+        confusion_mat = confusion_matrix(y_true, y_pred)
 
-    # Display metrics
-    st.write("Accuracy:", accuracy)
-    st.write("Confusion Matrix:")
-    st.write(confusion_mat)
-    st.write("Classification Report:")
-    st.text(classification_report_str)
+        # Display metrics
+        st.write("Accuracy:", accuracy)
+        st.write("Confusion Matrix:")
+        st.write(confusion_mat)
+        st.write("Classification Report:")
+        st.text(classification_report_str)
+
+    except UnicodeDecodeError:
+        st.error("Error: Unable to decode the CSV file. Please make sure the file is encoded in UTF-8.")
