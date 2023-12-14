@@ -29,8 +29,13 @@ uploaded_file = st.file_uploader("Upload a CSV file", type=["csv"])
 
 if uploaded_file is not None:
     try:
-        # Read the uploaded CSV file with specified encoding
-        df = pd.read_csv(uploaded_file, encoding='utf-8')
+        # Try reading the uploaded CSV file with different encodings
+        for encoding in ['utf-8', 'latin-1', 'ISO-8859-1']:
+            try:
+                df = pd.read_csv(uploaded_file, encoding=encoding)
+                break  # If successful, exit the loop
+            except UnicodeDecodeError:
+                continue  # Try the next encoding if decoding fails
 
         # Assuming 'Resubmit_binary' is your target variable
         X = df.drop(columns=['Resubmit_binary'])
@@ -64,4 +69,4 @@ if uploaded_file is not None:
         st.text(classification_report_str)
 
     except UnicodeDecodeError:
-        st.error("Error: Unable to decode the CSV file. Please make sure the file is encoded in UTF-8.")
+        st.error("Error: Unable to decode the CSV file. Please make sure the file is encoded in UTF-8, latin-1, or ISO-8859-1.")
