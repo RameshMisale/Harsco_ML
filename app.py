@@ -17,14 +17,24 @@ def perform_prediction(df):
     
     return result_df
 
-# Rest of your Streamlit app code...
-
-
 # Set app title and page icon
 st.set_page_config(page_title='CSV File Uploader', page_icon=':open_file_folder:')
 
 # Set app header
 st.header('CSV File Uploader')
+
+# Custom CSS to add a background image
+st.markdown(
+    """
+    <style>
+        body {
+            background-image: url('Logo.png');
+            background-size: cover;
+        }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
 
 # Create file uploader component
 csv_file = st.file_uploader('Choose a CSV file', type='csv')
