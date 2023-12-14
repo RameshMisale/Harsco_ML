@@ -4,7 +4,7 @@ import base64
 import joblib
 from sklearn.linear_model import LogisticRegression
 
-# Define function to perform prediction
+# Define function to perform prediction 
 def perform_prediction(df):
     # Load the trained model using joblib
     model_case = joblib.load(open('Harsco_mpdel.pkl', 'rb'))
