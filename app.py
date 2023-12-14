@@ -6,10 +6,23 @@ from sklearn.metrics import accuracy_score, classification_report, confusion_mat
 import joblib
 
 # Load your trained model
-model = joblib.load('Harsco_mpdel.pkl')
+model = joblib.load('Harsco_model.pkl')
 
 # Create a Streamlit web app
-st.title("Classification Model Deployment")
+st.title("Predicting the Resubmit/returned profiles")
+
+# Custom CSS to add a background image
+st.markdown(
+    """
+    <style>
+        body {
+            background-image: url('Logo.png');  # Replace 'your_image_url.jpg' with the URL or local path of your image
+            background-size: cover;
+        }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
 
 # Allow users to upload a CSV file
 uploaded_file = st.file_uploader("Upload a CSV file", type=["csv"])
