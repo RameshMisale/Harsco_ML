@@ -6,7 +6,7 @@ from sklearn.metrics import accuracy_score, classification_report, confusion_mat
 import joblib
 
 # Load your trained model
-model = joblib.load('your_model_path.pkl')
+model = joblib.load('Harsco_mpdel.pkl')
 
 # Create a Streamlit web app
 st.title("Classification Model Deployment")
