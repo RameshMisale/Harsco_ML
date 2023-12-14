@@ -54,7 +54,7 @@ if uploaded_file is not None:
         st.subheader("Model Evaluation on Uploaded Data")
 
         # Assuming 'Resubmit_binary' is your target variable
-        y_true = df['Resubmit_binary']
+        y_true = df['Resubmit']
 
         # Evaluate the model
         accuracy = accuracy_score(y_true, y_pred)
