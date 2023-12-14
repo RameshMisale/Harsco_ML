@@ -1,19 +1,24 @@
 import streamlit as st
 import pandas as pd
 import base64
-import pickle
+import joblib
 from sklearn.linear_model import LogisticRegression
 
 # Define function to perform prediction
 def perform_prediction(df):
-    model_case = pickle.load(open('Harsco_mpdel.pkl', 'rb')) 
+    # Load the trained model using joblib
+    model_case = joblib.load(open('Harsco_mpdel.pkl', 'rb'))
+    
     # Make predictions on the dataframe
     y_pred_case = model_case.predict(df)
-    y_pred_case =pd.DataFrame(y_pred_case,columns=['predicted_values'])
+    y_pred_case = pd.DataFrame(y_pred_case, columns=['predicted_values'])
     
-    result_df = pd.concat([df.reset_index(drop=True),pd.DataFrame(y_pred_case, columns=['predicted_values'])], axis=1)
+    result_df = pd.concat([df.reset_index(drop=True), pd.DataFrame(y_pred_case, columns=['predicted_values'])], axis=1)
     
     return result_df
+
+# Rest of your Streamlit app code...
+
 
 # Set app title and page icon
 st.set_page_config(page_title='CSV File Uploader', page_icon=':open_file_folder:')
