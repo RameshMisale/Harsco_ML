@@ -31,14 +31,17 @@ if csv_file is not None:
     df = pd.read_csv(csv_file)
     st.write(df)
     
-    # Apply inline style to set the background image
+    # Apply HTML and CSS for the background image
     st.markdown(
-        f"""
+        """
         <style>
-            .reportview-container {{
-                background: url('Logo.png') no-repeat center center fixed;
+            body {
+                background: url('your_image_url.jpg') no-repeat center center fixed;
                 background-size: cover;
-            }}
+            }
+            .reportview-container {
+                background: none;
+            }
         </style>
         """,
         unsafe_allow_html=True
