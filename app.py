@@ -50,7 +50,7 @@ def perform_prediction(df):
 st.set_page_config(page_title='Prediction of Resubmit/Returned pfofiles', page_icon=':open_file_folder:')
 
 # Set app header
-st.header('CSV File Uploader')
+st.header('Prediction of Resubmit/Returned pfofiles')
 
 # Create file uploader component
 csv_file = st.file_uploader('Choose a CSV file', type='csv')
