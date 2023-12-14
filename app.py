@@ -36,7 +36,7 @@ if csv_file is not None:
         f"""
         <style>
             .reportview-container {{
-                background: url('your_image_url.jpg') no-repeat center center fixed;
+                background: url('Logo.png') no-repeat center center fixed;
                 background-size: cover;
             }}
         </style>
