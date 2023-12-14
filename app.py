@@ -23,19 +23,6 @@ st.set_page_config(page_title='CSV File Uploader', page_icon=':open_file_folder:
 # Set app header
 st.header('CSV File Uploader')
 
-# Custom CSS to add a background image
-st.markdown(
-    """
-    <style>
-        body {
-            background-image: url('Logo.png');
-            background-size: cover;
-        }
-    </style>
-    """,
-    unsafe_allow_html=True
-)
-
 # Create file uploader component
 csv_file = st.file_uploader('Choose a CSV file', type='csv')
 
@@ -43,6 +30,20 @@ csv_file = st.file_uploader('Choose a CSV file', type='csv')
 if csv_file is not None:
     df = pd.read_csv(csv_file)
     st.write(df)
+    
+    # Apply inline style to set the background image
+    st.markdown(
+        f"""
+        <style>
+            .reportview-container {{
+                background: url('your_image_url.jpg') no-repeat center center fixed;
+                background-size: cover;
+            }}
+        </style>
+        """,
+        unsafe_allow_html=True
+    )
+
     if st.button('Perform Prediction'):
         result_df = perform_prediction(df)
         st.write(result_df)
