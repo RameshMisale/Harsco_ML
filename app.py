@@ -47,7 +47,7 @@ def perform_prediction(df):
 
 
 # Set app title and page icon
-st.set_page_config(page_title='CSV File Uploader', page_icon=':open_file_folder:')
+st.set_page_config(page_title='Prediction of Resubmit/Returned pfofiles', page_icon=':open_file_folder:')
 
 # Set app header
 st.header('CSV File Uploader')
