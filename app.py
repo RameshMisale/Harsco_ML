@@ -6,7 +6,7 @@ import joblib
 from sklearn.linear_model import LogisticRegression
 from sklearn.impute import SimpleImputer
 from sklearn.preprocessing import StandardScaler, OneHotEncoder
-from sklearn.compose import ColumnTransformer
+from sklearn.compose import ColumnTransformer 
 from sklearn.pipeline import Pipeline
 from sklearn.ensemble import RandomForestClassifier
 
