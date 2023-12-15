@@ -40,9 +40,9 @@ def perform_prediction(df):
 
     # Make predictions on the preprocessed dataframe
     y_pred_case = model_case.predict(preprocessor.transform(df))
-    y_pred_case = pd.DataFrame(y_pred_case, columns=['predicted_values'])
+    y_pred_case = pd.DataFrame(y_pred_case, columns=['Resubmit'])
     
-    result_df = pd.concat([df.reset_index(drop=True), pd.DataFrame(y_pred_case, columns=['predicted_values'])], axis=1)
+    result_df = pd.concat([df.reset_index(drop=True), pd.DataFrame(y_pred_case, columns=['Resubmit'])], axis=1)
     
     return result_df
 
